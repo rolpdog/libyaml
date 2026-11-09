@@ -20,14 +20,14 @@ jobs:
         - clang
         os:
         - ubuntu-latest
-        - macOS-latest
+        - macos-27
 
     steps:
     - uses: actions/checkout@v7
 
     - run: env | sort
     - name: Install software
-      if: ${{ matrix.os == 'macOS-latest' }}
+      if: ${{ startsWith(matrix.os, 'macos-') }}
       run: |
         brew install automake bash coreutils make libtool
         echo "/usr/local/opt/coreutils/libexec/gnubin" >> $GITHUB_PATH
